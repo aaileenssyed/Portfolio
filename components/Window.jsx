@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import WindowContent from './WindowContent';
 
-const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems }) => {
+const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems, onOpenWindow }) => {
   return (
     <div
       className="absolute"
@@ -32,7 +32,7 @@ const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems })
           </div>
         </div>
         <div className="flex-1 overflow-hidden">
-          <WindowContent window={window} deletedItems={deletedItems} setDeletedItems={setDeletedItems} />
+          <WindowContent window={window} deletedItems={deletedItems} setDeletedItems={setDeletedItems} onOpenWindow={onOpenWindow} />
         </div>
       </div>
     </div>

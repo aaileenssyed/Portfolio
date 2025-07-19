@@ -225,6 +225,7 @@ const OSHeroSection = () => {
             onClose={closeWindow}
             deletedItems={deletedItems}
             setDeletedItems={setDeletedItems}
+            onOpenWindow={handleIconDoubleClick}
           />
         ))}
       </div>
