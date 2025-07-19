@@ -21,7 +21,8 @@ const OSHeroSection = () => {
   const [desktopIcons, setDesktopIcons] = useState([
     { id: 1, name: 'About Me', icon: 'mdi:account', color: 'from-blue-500 to-blue-600', x: 20, y: 60 },
     { id: 2, name: 'Contact', icon: 'mdi:email', color: 'from-purple-500 to-purple-600', x: 20, y: 160 },
-    { id: 3, name: 'Trash', icon: 'mdi:trash-can', color: 'from-gray-600 to-gray-700', x: 20, y: 260 },
+    { id: 3, name: 'Gallery', icon: 'mdi:image-multiple', color: 'from-green-500 to-green-600', x: 20, y: 260 },
+    { id: 4, name: 'Trash', icon: 'mdi:trash-can', color: 'from-gray-600 to-gray-700', x: 20, y: 360 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
