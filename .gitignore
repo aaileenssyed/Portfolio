@@ -16,3 +16,4 @@ yarn-error.log*
 # Optional: OS & editor-specific
 .DS_Store
 *.swp
+.vercel
