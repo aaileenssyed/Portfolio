@@ -29,7 +29,9 @@ const WallpaperSelector = ({ onSelectWallpaper, onClose }) => {
 
   const handleDragLeave = (e) => {
     e.preventDefault();
-    setIsDragging(false);
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsDragging(false);
+    }
   };
 
   const handleDrop = (e) => {
