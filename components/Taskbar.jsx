@@ -5,9 +5,9 @@ const Taskbar = ({ startMenuOpen, setStartMenuOpen, activeWindows, onBringToFron
   const [taskbarSize, setTaskbarSize] = useState('normal');
   
   const sizeClasses = {
-    small: 'py-1',
-    normal: 'py-2',
-    large: 'py-3'
+    small: 'h-12',
+    normal: 'h-14',
+    large: 'h-16'
   };
 
   const iconSizes = {
@@ -17,10 +17,10 @@ const Taskbar = ({ startMenuOpen, setStartMenuOpen, activeWindows, onBringToFron
   };
 
   return (
-    <div className={`absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-2xl border-t border-white/10 z-40 transition-all duration-300`}>
+    <div className={`absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-2xl border-t border-white/10 z-40 transition-all duration-300 ${sizeClasses[taskbarSize]}`}>
       <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none"></div>
       
-      <div className={`relative flex items-center justify-between px-6 ${sizeClasses[taskbarSize]}`}>
+      <div className={`relative flex items-center justify-between px-6 h-full`}>
         <button
           onClick={() => setStartMenuOpen(!startMenuOpen)}
           className={`group relative overflow-hidden flex items-center justify-center ${iconSizes[taskbarSize]} bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl hover:scale-110 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl`}
@@ -29,12 +29,12 @@ const Taskbar = ({ startMenuOpen, setStartMenuOpen, activeWindows, onBringToFron
           <Icon icon="fluent:window-apps-16-filled" className="w-5 h-5 text-white relative z-10" />
         </button>
 
-        <div className="flex items-center gap-2 flex-1 px-6 overflow-x-auto scrollbar-none">
+        <div className="flex items-center gap-2 flex-1 px-6 overflow-x-auto scrollbar-none h-full py-2">
           {activeWindows.map((window, index) => (
-            <div key={window.id} className="relative group">
+            <div key={window.id} className="relative group h-full flex items-center">
               <button
                 onClick={() => onBringToFront(window.id)}
-                className={`relative flex items-center gap-3 px-4 ${sizeClasses[taskbarSize]} bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 active:bg-white/25 transition-all duration-200 min-w-[60px] max-w-[250px] border border-white/10 hover:border-white/20 overflow-hidden`}
+                className={`relative flex items-center gap-3 px-4 h-[calc(100%-8px)] bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 active:bg-white/25 transition-all duration-200 min-w-[60px] max-w-[250px] border border-white/10 hover:border-white/20 overflow-hidden`}
                 style={{
                   animation: `slideIn 0.3s ease-out ${index * 0.05}s backwards`
                 }}
