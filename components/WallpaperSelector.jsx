@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 
 const WallpaperSelector = ({ onSelectWallpaper, onClose }) => {
   const [selectedWallpaper] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
   
   const wallpapers = [
     { id: 1, url: '/images/wallpaper/wallpaper.jpg', name: 'Default Wallpaper' },
@@ -11,6 +12,31 @@ const WallpaperSelector = ({ onSelectWallpaper, onClose }) => {
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        onSelectWallpaper(event.target.result);
+        onClose();
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    
+    const file = e.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -73,12 +99,25 @@ const WallpaperSelector = ({ onSelectWallpaper, onClose }) => {
           </div>
 
           <div className="border-t border-white/10 pt-6">
-            <label className="block">
-              <div className="flex items-center justify-center gap-3 p-8 border-2 border-dashed border-white/20 rounded-xl hover:border-white/40 hover:bg-white/5 transition-all cursor-pointer">
-                <Icon icon="mdi:upload" className="w-8 h-8 text-white/60" />
+            <label 
+              className="block"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <div className={`flex items-center justify-center gap-3 p-8 border-2 border-dashed rounded-xl transition-all cursor-pointer ${
+                isDragging 
+                  ? 'border-blue-400 bg-blue-500/10' 
+                  : 'border-white/20 hover:border-white/40 hover:bg-white/5'
+              }`}>
+                <Icon icon={isDragging ? "mdi:image-plus" : "mdi:upload"} className="w-8 h-8 text-white/60" />
                 <div className="text-center">
-                  <p className="text-white font-medium">Upload Custom Wallpaper</p>
-                  <p className="text-white/60 text-sm mt-1">Click to browse or drag and drop</p>
+                  <p className="text-white font-medium">
+                    {isDragging ? 'Drop image here' : 'Upload Custom Wallpaper'}
+                  </p>
+                  <p className="text-white/60 text-sm mt-1">
+                    {isDragging ? 'Release to upload' : 'Click to browse or drag and drop'}
+                  </p>
                 </div>
               </div>
               <input 
