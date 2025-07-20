@@ -19,14 +19,15 @@ const OSHeroSection = () => {
   const [draggingWindow, setDraggingWindow] = useState(null);
   const [windowDragOffset, setWindowDragOffset] = useState({ x: 0, y: 0 });
   const [desktopIcons, setDesktopIcons] = useState([
-    { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', x: 20, y: 60 },
-    { id: 2, name: 'Contact', icon: 'fluent-color:mail-48', x: 120, y: 60 },
-    { id: 3, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 20, y: 160 },
-    { id: 4, name: 'Gallery', icon: 'fluent-color:image-48', x: 20, y: 260 },
+    { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', x: 15, y: 60 },
+    { id: 2, name: 'Contact', icon: 'fluent-color:mail-48', x: 110, y: 60 },
+    { id: 3, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 280, y: 60 },
+    { id: 4, name: 'Gallery', icon: 'fluent-color:image-48', x: 20, y: 160 },
     { id: 5, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360 },
-    { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 190, y: 60 },
-    { id: 7, name: 'Calculator', icon: 'flat-color-icons:calculator', x: 110, y: 160 },
-    { id: 8, name: 'Spin Wheel', icon: 'noto:wheel', x: 110, y: 260 },
+    { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 180, y: 60 },
+    { id: 7, name: 'Calculator', icon: 'flat-color-icons:calculator', x: 100, y: 160 },
+    { id: 8, name: 'Spin Wheel', icon: 'noto:wheel', x: 10, y: 260 },
+    { id: 9, name: 'Paint', icon: 'fluent-color:paint-brush-16', x: 100, y: 260 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
