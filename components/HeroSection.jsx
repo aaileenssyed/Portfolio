@@ -19,12 +19,12 @@ const OSHeroSection = () => {
   const [draggingWindow, setDraggingWindow] = useState(null);
   const [windowDragOffset, setWindowDragOffset] = useState({ x: 0, y: 0 });
   const [desktopIcons, setDesktopIcons] = useState([
-    { id: 1, name: 'About Me', icon: 'mdi:account', color: 'from-blue-500 to-blue-600', x: 20, y: 60 },
-    { id: 2, name: 'Contact', icon: 'mdi:email', color: 'from-purple-500 to-purple-600', x: 20, y: 160 },
-    { id: 3, name: 'Gallery', icon: 'mdi:image-multiple', color: 'from-green-500 to-green-600', x: 20, y: 260 },
-    { id: 4, name: 'VS Code', icon: 'mdi:microsoft-visual-studio-code', color: 'from-blue-600 to-blue-700', x: 20, y: 360 },
-    { id: 5, name: 'Trash', icon: 'mdi:trash-can', color: 'from-gray-600 to-gray-700', x: 20, y: 460 },
-    { id: 6, name: 'Google Chrome', icon: 'mdi:google-chrome', color: 'from-red-500 to-yellow-500', x: 120, y: 60 },
+    { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', x: 20, y: 60 },
+    { id: 2, name: 'Contact', icon: 'fluent-color:mail-48', x: 120, y: 60 },
+    { id: 3, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 20, y: 160 },
+    { id: 4, name: 'Gallery', icon: 'fluent-color:image-48', x: 20, y: 260 },
+    { id: 5, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360 },
+    { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 110, y: 160 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
