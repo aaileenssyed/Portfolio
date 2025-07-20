@@ -36,6 +36,9 @@ const OSHeroSection = () => {
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedIcons, setSelectedIcons] = useState([]);
+  const [selectionBox, setSelectionBox] = useState(null);
+  const [isSelecting, setIsSelecting] = useState(false);
   const desktopRef = useRef(null);
 
   useEffect(() => {
@@ -48,8 +51,9 @@ const OSHeroSection = () => {
       if (contextMenu && !e.target.closest('.context-menu')) {
         setContextMenu(null);
       }
-      if (!e.target.closest('.desktop-icon')) {
+      if (!e.target.closest('.desktop-icon') && !isSelecting) {
         setSelectedIcon(null);
+        setSelectedIcons([]);
       }
       if (controlCenterOpen && !e.target.closest('.control-center') && !e.target.closest('.system-tray-button')) {
         setControlCenterOpen(false);
@@ -57,7 +61,7 @@ const OSHeroSection = () => {
     };
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [contextMenu, controlCenterOpen]);
+  }, [contextMenu, controlCenterOpen, isSelecting]);
 
   const handleIconDoubleClick = (icon) => {
     const existingWindow = activeWindows.find(w => w.name === icon.name);
@@ -87,6 +91,30 @@ const OSHeroSection = () => {
     });
     setDraggingIcon(icon.id);
     setSelectedIcon(icon.id);
+    setSelectedIcons([icon.id]);
+  };
+
+  const handleDesktopMouseDown = (e) => {
+    const isClickOnWindow = e.target.closest('.window-container');
+    const isClickOnIcon = e.target.closest('.desktop-icon');
+    const isClickOnDesktop = e.target === desktopRef.current || e.target.classList.contains('desktop-area');
+    
+    if (isClickOnDesktop && !isClickOnWindow && !isClickOnIcon && e.button === 0) {
+      const rect = desktopRef.current.getBoundingClientRect();
+      const startX = e.clientX - rect.left;
+      const startY = e.clientY - rect.top;
+      
+      setIsSelecting(true);
+      setSelectionBox({
+        startX,
+        startY,
+        currentX: startX,
+        currentY: startY
+      });
+      setSelectedIcons([]);
+      setSelectedIcon(null);
+      e.preventDefault();
+    }
   };
 
   const handleWindowMouseDown = (e, windowId) => {
@@ -126,11 +154,43 @@ const OSHeroSection = () => {
         )
       );
     }
+
+    if (isSelecting && selectionBox && desktopRef.current) {
+      const rect = desktopRef.current.getBoundingClientRect();
+      const currentX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+      const currentY = Math.max(0, Math.min(e.clientY - rect.top, rect.height));
+      
+      setSelectionBox({
+        ...selectionBox,
+        currentX,
+        currentY
+      });
+
+      const minX = Math.min(selectionBox.startX, currentX);
+      const minY = Math.min(selectionBox.startY, currentY);
+      const maxX = Math.max(selectionBox.startX, currentX);
+      const maxY = Math.max(selectionBox.startY, currentY);
+
+      const selectedIds = desktopIcons
+        .filter(icon => {
+          const iconCenterX = icon.x + 40;
+          const iconCenterY = icon.y + 40;
+          return iconCenterX >= minX && iconCenterX <= maxX && 
+                 iconCenterY >= minY && iconCenterY <= maxY;
+        })
+        .map(icon => icon.id);
+
+      setSelectedIcons(selectedIds);
+    }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e) => {
     setDraggingIcon(null);
     setDraggingWindow(null);
+    if (isSelecting) {
+      setIsSelecting(false);
+      setSelectionBox(null);
+    }
   };
 
   const handleContextMenu = (e) => {
@@ -145,11 +205,17 @@ const OSHeroSection = () => {
   const handleIconContextMenu = (e, icon) => {
     e.preventDefault();
     e.stopPropagation();
+    
+    if (!selectedIcons.includes(icon.id)) {
+      setSelectedIcons([icon.id]);
+    }
+    
     setContextMenu({
       x: e.clientX,
       y: e.clientY,
       type: 'icon',
-      icon: icon
+      icon: icon,
+      multipleSelected: selectedIcons.length > 1
     });
   };
 
@@ -168,8 +234,15 @@ const OSHeroSection = () => {
   };
 
   const deleteIcon = (icon) => {
-    setDesktopIcons(desktopIcons.filter(i => i.id !== icon.id));
-    setDeletedItems([...deletedItems, { ...icon, deletedAt: new Date() }]);
+    if (selectedIcons.length > 1) {
+      const itemsToDelete = desktopIcons.filter(i => selectedIcons.includes(i.id));
+      setDesktopIcons(desktopIcons.filter(i => !selectedIcons.includes(i.id)));
+      setDeletedItems([...deletedItems, ...itemsToDelete.map(item => ({ ...item, deletedAt: new Date() }))]);
+      setSelectedIcons([]);
+    } else {
+      setDesktopIcons(desktopIcons.filter(i => i.id !== icon.id));
+      setDeletedItems([...deletedItems, { ...icon, deletedAt: new Date() }]);
+    }
     setContextMenu(null);
   };
 
@@ -242,19 +315,35 @@ const OSHeroSection = () => {
 
       <div 
         ref={desktopRef}
-        className="absolute inset-0 pt-8 pb-12"
+        className="absolute inset-0 pt-8 pb-12 desktop-area"
         onContextMenu={handleContextMenu}
+        onMouseDown={handleDesktopMouseDown}
       >
         {desktopIcons.map((icon) => (
           <DesktopIcon
             key={icon.id}
             icon={icon}
-            isSelected={selectedIcon === icon.id}
+            isSelected={selectedIcons.includes(icon.id)}
             onMouseDown={handleMouseDown}
             onDoubleClick={handleIconDoubleClick}
             onContextMenu={handleIconContextMenu}
           />
         ))}
+
+        {selectionBox && isSelecting && (
+          <motion.div
+            className="absolute border border-blue-400 bg-blue-400/20 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
+            style={{
+              left: Math.min(selectionBox.startX, selectionBox.currentX),
+              top: Math.min(selectionBox.startY, selectionBox.currentY),
+              width: Math.abs(selectionBox.currentX - selectionBox.startX),
+              height: Math.abs(selectionBox.currentY - selectionBox.startY),
+            }}
+          />
+        )}
 
         {activeWindows.map((window) => (
           <Window
