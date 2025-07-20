@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 
-const ContextMenu = ({ contextMenu, onCreateFolder, onOpenIcon, onDeleteIcon }) => {
+const ContextMenu = ({ contextMenu, onCreateFolder, onOpenIcon, onDeleteIcon, onChangeWallpaper }) => {
   return (
     <div 
       className="context-menu absolute bg-black/40 backdrop-blur-2xl rounded-xl shadow-2xl border border-white/10 py-1 z-50 min-w-[200px] animate-fadeIn"
@@ -20,6 +20,19 @@ const ContextMenu = ({ contextMenu, onCreateFolder, onOpenIcon, onDeleteIcon }) 
               </div>
               <span className="font-medium">New Folder</span>
             </button>
+            
+            <div className="h-px bg-white/10 mx-2 my-1"></div>
+
+            <button 
+              onClick={onChangeWallpaper}
+              className="group w-full flex items-center gap-3 px-4 py-2.5 hover:bg-white/10 text-white text-sm transition-all duration-200"
+            >
+              <div className="p-1.5 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg group-hover:from-purple-500/30 group-hover:to-pink-500/30 transition-all">
+                <Icon icon="fluent:image-edit-24-filled" className="w-4 h-4 text-purple-400" />
+              </div>
+              <span className="font-medium">Change Wallpaper</span>
+            </button>
+
             
           </>
         ) : (

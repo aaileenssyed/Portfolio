@@ -6,6 +6,7 @@ import Window from './Window';
 import ContextMenu from './ContextMenu';
 import Taskbar from './Taskbar';
 import StartMenu from './StartMenu';
+import WallpaperSelector from './WallpaperSelector';
 
 const OSHeroSection = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -18,6 +19,8 @@ const OSHeroSection = () => {
   const [deletedItems, setDeletedItems] = useState([]);
   const [draggingWindow, setDraggingWindow] = useState(null);
   const [windowDragOffset, setWindowDragOffset] = useState({ x: 0, y: 0 });
+  const [wallpaperSelectorOpen, setWallpaperSelectorOpen] = useState(false);
+  const [wallpaper, setWallpaper] = useState('/images/wallpaper/wallpaper.jpg');
   const [desktopIcons, setDesktopIcons] = useState([
     { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', x: 15, y: 60 },
     { id: 2, name: 'Contact', icon: 'fluent-color:mail-48', x: 110, y: 60 },
@@ -178,12 +181,21 @@ const OSHeroSection = () => {
     ));
   };
 
+  const handleChangeWallpaper = () => {
+    setWallpaperSelectorOpen(true);
+    setContextMenu(null);
+  };
+
+  const handleSelectWallpaper = (wallpaperUrl) => {
+    setWallpaper(wallpaperUrl);
+  };
+
   return (
     <div 
       className="h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden"
-        style={{ 
+      style={{ 
         filter: `brightness(${brightness}%)`,
-        backgroundImage: 'url(/images/wallpaper.jpg)',
+        backgroundImage: `url(${wallpaper})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -249,6 +261,14 @@ const OSHeroSection = () => {
             setContextMenu(null);
           }}
           onDeleteIcon={deleteIcon}
+          onChangeWallpaper={handleChangeWallpaper}
+        />
+      )}
+
+      {wallpaperSelectorOpen && (
+        <WallpaperSelector
+          onSelectWallpaper={handleSelectWallpaper}
+          onClose={() => setWallpaperSelectorOpen(false)}
         />
       )}
 
