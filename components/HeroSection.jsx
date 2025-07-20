@@ -26,6 +26,7 @@ const OSHeroSection = () => {
     { id: 5, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360 },
     { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 190, y: 60 },
     { id: 7, name: 'Calculator', icon: 'flat-color-icons:calculator', x: 110, y: 160 },
+    { id: 8, name: 'Spin Wheel', icon: 'noto:wheel', x: 110, y: 260 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
