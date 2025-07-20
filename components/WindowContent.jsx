@@ -190,6 +190,21 @@ if (window.name === 'Google Chrome') {
     </div>
   );
 }
+
+  if (window.name === 'VS Code') {
+    return (
+      <div className="flex flex-col h-full bg-[#1e1e1e]">
+        <div className="flex-1 relative">
+          <iframe
+            src="https://github1s.com/jworse/desktop-portfolio"
+            className="w-full h-full"
+            title="VS Code"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          />
+        </div>
+      </div>
+    );
+  }
   if (window.name === 'Gallery') {
     const images = Array.from({ length: 10 }, (_, i) => ({
       id: i + 1,

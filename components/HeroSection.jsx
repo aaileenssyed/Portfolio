@@ -22,8 +22,9 @@ const OSHeroSection = () => {
     { id: 1, name: 'About Me', icon: 'mdi:account', color: 'from-blue-500 to-blue-600', x: 20, y: 60 },
     { id: 2, name: 'Contact', icon: 'mdi:email', color: 'from-purple-500 to-purple-600', x: 20, y: 160 },
     { id: 3, name: 'Gallery', icon: 'mdi:image-multiple', color: 'from-green-500 to-green-600', x: 20, y: 260 },
-    { id: 4, name: 'Trash', icon: 'mdi:trash-can', color: 'from-gray-600 to-gray-700', x: 20, y: 360 },
-    { id: 5, name: 'Google Chrome', icon: 'mdi:google-chrome', color: 'from-red-500 to-yellow-500', x: 120, y: 60 },
+    { id: 4, name: 'VS Code', icon: 'mdi:microsoft-visual-studio-code', color: 'from-blue-600 to-blue-700', x: 20, y: 360 },
+    { id: 5, name: 'Trash', icon: 'mdi:trash-can', color: 'from-gray-600 to-gray-700', x: 20, y: 460 },
+    { id: 6, name: 'Google Chrome', icon: 'mdi:google-chrome', color: 'from-red-500 to-yellow-500', x: 120, y: 60 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
