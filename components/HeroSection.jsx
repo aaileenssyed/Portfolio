@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import TopMenuBar from './TopMenuBar';
 import ControlCenter from './ControlCenter';
 import DesktopIcon from './DesktopIcon';
@@ -194,17 +195,31 @@ const OSHeroSection = () => {
 
   return (
     <div 
-      className="h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden"
-      style={{ 
-        filter: `brightness(${brightness}%)`,
-        backgroundImage: `url(${wallpaper})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="h-screen relative overflow-hidden bg-black"
+      style={{ filter: `brightness(${brightness}%)` }}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={wallpaper}
+          className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.43, 0.13, 0.23, 0.96]
+          }}
+          style={{
+            backgroundImage: `url(${wallpaper})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+      </AnimatePresence>
+
       <TopMenuBar 
         currentTime={currentTime}
         onControlCenterToggle={() => setControlCenterOpen(!controlCenterOpen)}
