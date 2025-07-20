@@ -1,11 +1,15 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import { motion } from 'framer-motion';
 
 const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onContextMenu }) => {
   return (
-    <div
+    <motion.div
       className={`desktop-icon absolute select-none ${isSelected ? 'selected' : ''}`}
       style={{ left: `${icon.x}px`, top: `${icon.y}px` }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <div 
         className={`flex flex-col items-center space-y-2 p-3 rounded-lg hover:bg-white/10 transition-all duration-200 ${isSelected ? 'bg-white/20' : ''} cursor-pointer`}
@@ -24,7 +28,7 @@ const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onContextMe
           {icon.name}
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
