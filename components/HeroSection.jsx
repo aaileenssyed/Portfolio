@@ -151,8 +151,7 @@ const OSHeroSection = () => {
     const newFolder = {
       id: Date.now(),
       name: 'New Folder',
-      icon: 'mdi:folder',
-      color: 'from-yellow-500 to-yellow-600',
+      icon: 'fxemoji:folder',
       x: contextMenu.x - 40,
       y: contextMenu.y - 40
     };
