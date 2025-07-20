@@ -180,7 +180,13 @@ const OSHeroSection = () => {
   return (
     <div 
       className="h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden"
-      style={{ filter: `brightness(${brightness}%)` }}
+        style={{ 
+        filter: `brightness(${brightness}%)`,
+        backgroundImage: 'url(/images/wallpaper.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
