@@ -1,31 +1,107 @@
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
 
 const Taskbar = ({ startMenuOpen, setStartMenuOpen, activeWindows, onBringToFront }) => {
+  const [taskbarSize, setTaskbarSize] = useState('normal');
+  
+  const sizeClasses = {
+    small: 'py-1',
+    normal: 'py-2',
+    large: 'py-3'
+  };
+
+  const iconSizes = {
+    small: 'w-5 h-5',
+    normal: 'w-7 h-7',
+    large: 'w-9 h-9'
+  };
+
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-gray-900/90 backdrop-blur-xl border-t border-gray-700/50 z-40">
-      <div className="flex items-center justify-between px-4 py-2">
-      <button
-        onClick={() => setStartMenuOpen(!startMenuOpen)}
-        className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-700/50 transition-all duration-200"
-      >
-        <div className="w-6 h-6  rounded grid grid-cols-2 grid-rows-2 gap-0.5 p-1">
-          <Icon icon="fluent-mdl2:list" className="w-4 h-4 text-white" />
-        </div>
-        <span className="text-white font-medium">Start</span>
-      </button>
-        <div className="flex items-center space-x-2 flex-1 px-4">
-          {activeWindows.map((window) => (
-            <button
-              key={window.id}
-              onClick={() => onBringToFront(window.id)}
-              className="flex items-center space-x-2 px-3 py-1.5 bg-gray-800/80 rounded-lg hover:bg-gray-700/50 transition-all duration-200 min-w-[150px] max-w-[200px]"
-            >
-              <Icon icon={window.icon} className="w-4 h-4 text-gray-400" />
-              <span className="text-white text-sm truncate">{window.name}</span>
-            </button>
+    <div className={`absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-2xl border-t border-white/10 z-40 transition-all duration-300`}>
+      <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none"></div>
+      
+      <div className={`relative flex items-center justify-between px-6 ${sizeClasses[taskbarSize]}`}>
+        <button
+          onClick={() => setStartMenuOpen(!startMenuOpen)}
+          className={`group relative overflow-hidden flex items-center justify-center ${iconSizes[taskbarSize]} bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl hover:scale-110 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl`}
+        >
+          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          <Icon icon="fluent:window-apps-16-filled" className="w-5 h-5 text-white relative z-10" />
+        </button>
+
+        <div className="flex items-center gap-2 flex-1 px-6 overflow-x-auto scrollbar-none">
+          {activeWindows.map((window, index) => (
+            <div key={window.id} className="relative group">
+              <button
+                onClick={() => onBringToFront(window.id)}
+                className={`relative flex items-center gap-3 px-4 ${sizeClasses[taskbarSize]} bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 active:bg-white/25 transition-all duration-200 min-w-[60px] max-w-[250px] border border-white/10 hover:border-white/20 overflow-hidden`}
+                style={{
+                  animation: `slideIn 0.3s ease-out ${index * 0.05}s backwards`
+                }}
+              >
+                {window.color ? (
+                  <div className={`p-1.5 bg-gradient-to-br ${window.color} rounded-lg flex-shrink-0`}>
+                    <Icon icon={window.icon} className="w-4 h-4" />
+                  </div>
+                ) : (
+                  <Icon icon={window.icon} className={`${taskbarSize === 'small' ? 'w-5 h-5' : 'w-6 h-6'} flex-shrink-0`} />
+                )}
+                <span className="text-white text-sm font-medium truncate">{window.name}</span>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transform scale-x-100 group-hover:scale-x-100 transition-transform duration-300"></div>
+              </button>
+              
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/90 backdrop-blur-xl rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap">
+                <span className="text-white text-xs">{window.name}</span>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-black/90 rotate-45"></div>
+              </div>
+            </div>
           ))}
         </div>
+
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setTaskbarSize('small')}
+            className={`p-1.5 rounded-lg transition-all duration-200 ${taskbarSize === 'small' ? 'bg-white/20 text-white' : 'text-gray-400 hover:text-white hover:bg-white/10'}`}
+            title="Small"
+          >
+            <Icon icon="mdi:resize-bottom-right" className="w-3 h-3" />
+          </button>
+          <button
+            onClick={() => setTaskbarSize('normal')}
+            className={`p-1.5 rounded-lg transition-all duration-200 ${taskbarSize === 'normal' ? 'bg-white/20 text-white' : 'text-gray-400 hover:text-white hover:bg-white/10'}`}
+            title="Normal"
+          >
+            <Icon icon="mdi:resize-bottom-right" className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setTaskbarSize('large')}
+            className={`p-1.5 rounded-lg transition-all duration-200 ${taskbarSize === 'large' ? 'bg-white/20 text-white' : 'text-gray-400 hover:text-white hover:bg-white/10'}`}
+            title="Large"
+          >
+            <Icon icon="mdi:resize-bottom-right" className="w-5 h-5" />
+          </button>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-none {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };
