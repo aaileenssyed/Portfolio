@@ -469,6 +469,22 @@ if (window.name === 'Calculator') {
     </div>
   );
 }
+  
+if (window.name === 'Spotify') {
+  return (
+    <div className="flex flex-col h-full bg-[#1e1e1e]">
+      <div className="flex-1 relative">
+        <iframe
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M"
+          className="w-full h-full"
+          title="Spotify"
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        />
+      </div>
+    </div>
+  );
+}
+
   if (window.name === 'Gallery') {
     const images = Array.from({ length: 10 }, (_, i) => ({
       id: i + 1,
