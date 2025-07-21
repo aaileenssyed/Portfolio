@@ -27,7 +27,7 @@ const OSHeroSection = () => {
     { id: 2, name: 'Contact', icon: 'fluent-color:mail-48', x: 110, y: 60, defaultWidth: 700, defaultHeight: 500 },
     { id: 3, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 280, y: 60, defaultWidth: 1200, defaultHeight: 800 },
     { id: 4, name: 'Gallery', icon: 'fluent-color:image-48', x: 20, y: 160, defaultWidth: 1000, defaultHeight: 700 },
-    { id: 5, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 400 },
+    { id: 5, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
     { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 180, y: 60, defaultWidth: 1100, defaultHeight: 700 },
     { id: 7, name: 'Calculator', icon: 'flat-color-icons:calculator', x: 100, y: 160, defaultWidth: 400, defaultHeight: 500 },
     { id: 8, name: 'Spin Wheel', icon: 'noto:wheel', x: 10, y: 260, defaultWidth: 800, defaultHeight: 800 },
