@@ -25,15 +25,16 @@ const OSHeroSection = () => {
   const [desktopIcons, setDesktopIcons] = useState([
     { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', x: 15, y: 60, defaultWidth: 900, defaultHeight: 600 },
     { id: 2, name: 'Contact', icon: 'fluent-color:mail-48', x: 110, y: 60, defaultWidth: 700, defaultHeight: 500 },
-    { id: 3, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 280, y: 60, defaultWidth: 1200, defaultHeight: 800 },
+    { id: 3, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 330, y: 60, defaultWidth: 1200, defaultHeight: 800 },
     { id: 4, name: 'Gallery', icon: 'fluent-color:image-48', x: 20, y: 160, defaultWidth: 1000, defaultHeight: 700 },
     { id: 5, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
-    { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 180, y: 60, defaultWidth: 1100, defaultHeight: 700 },
+    { id: 6, name: 'Google Chrome', icon: 'logos:chrome', x: 240, y: 60, defaultWidth: 1100, defaultHeight: 700 },
     { id: 7, name: 'Calculator', icon: 'flat-color-icons:calculator', x: 100, y: 160, defaultWidth: 400, defaultHeight: 500 },
     { id: 8, name: 'Spin Wheel', icon: 'noto:wheel', x: 10, y: 260, defaultWidth: 800, defaultHeight: 800 },
     { id: 9, name: 'Paint', icon: 'fluent-color:paint-brush-16', x: 100, y: 260, defaultWidth: 700, defaultHeight: 680 },
-    { id: 10, name: 'Spotify', icon: 'logos:spotify-icon', x: 360, y: 60, defaultWidth: 700, defaultHeight: 680 },
-    { id: 11, name: 'Projects', icon: 'material-icon-theme:folder-project-open', x: 440, y: 60, defaultWidth: 700, defaultHeight: 600 },
+    { id: 10, name: 'Spotify', icon: 'logos:spotify-icon', x: 410, y: 60, defaultWidth: 700, defaultHeight: 680 },
+    { id: 11, name: 'Projects', icon: 'material-icon-theme:folder-project-open', x: 480, y: 60, defaultWidth: 700, defaultHeight: 600 },
+    { id: 12, name: 'Hobbies', icon: 'fluent-emoji-flat:camping', x: 180, y: 60, defaultWidth: 700, defaultHeight: 710 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
