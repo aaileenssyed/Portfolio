@@ -33,6 +33,7 @@ const OSHeroSection = () => {
     { id: 8, name: 'Spin Wheel', icon: 'noto:wheel', x: 10, y: 260, defaultWidth: 800, defaultHeight: 800 },
     { id: 9, name: 'Paint', icon: 'fluent-color:paint-brush-16', x: 100, y: 260, defaultWidth: 700, defaultHeight: 680 },
     { id: 10, name: 'Spotify', icon: 'logos:spotify-icon', x: 360, y: 60, defaultWidth: 700, defaultHeight: 680 },
+    { id: 11, name: 'Projects', icon: 'material-icon-theme:folder-project-open', x: 440, y: 60, defaultWidth: 700, defaultHeight: 600 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
