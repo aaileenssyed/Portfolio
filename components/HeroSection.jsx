@@ -35,7 +35,8 @@ const OSHeroSection = () => {
     { id: 10, name: 'Paint', icon: 'fluent-color:paint-brush-16', x: 105, y: 260, defaultWidth: 700, defaultHeight: 680 },
     { id: 11, name: 'Spotify', icon: 'logos:spotify-icon', x: 190, y: 260, defaultWidth: 700, defaultHeight: 680 },
     { id: 12, name: 'Notepad', icon: 'fxemoji:note', x: 275, y: 260, defaultWidth: 600, defaultHeight: 500 },
-    { id: 13, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
+    { id: 13, name: 'Music Player', icon: 'mdi:music', color: 'text-blue-500', x: 105, y: 360, defaultWidth: 700, defaultHeight: 600 },
+    { id: 14, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });

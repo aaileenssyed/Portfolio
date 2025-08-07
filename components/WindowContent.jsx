@@ -7,6 +7,7 @@ import Calculator from './app/Calculator';
 import Hobbies from './app/Hobbies';
 import Gallery from './app/Gallery';
 import Notepad from './app/Notepad';
+import MusicPlayer from './app/MusicPlayer';
 import { SpinWheel, Paint, VSCode, Spotify } from './app/IframeApps';
 
 const WindowContent = ({ window, deletedItems, setDeletedItems, onOpenWindow }) => {
@@ -65,6 +66,10 @@ const WindowContent = ({ window, deletedItems, setDeletedItems, onOpenWindow }) 
 
   if (window.name === 'Notepad') {
     return <Notepad />;
+  }
+
+  if (window.name === 'Music Player') {
+    return <MusicPlayer />;
   }
 
   if (window.name === 'Spotify') {
