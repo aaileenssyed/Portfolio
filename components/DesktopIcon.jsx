@@ -20,7 +20,7 @@ const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onContextMe
         <div className="flex items-center justify-center w-12 h-12">
           {icon.color ? (
             <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-br ${icon.color} rounded-xl shadow-2xl transform hover:scale-110 transition-all duration-200 pointer-events-none`}>
-              <Icon icon={icon.icon} className="w-8 h-8" />
+              <Icon icon={icon.icon} className="w-12 h-12 " />
             </div>
           ) : (
             <Icon icon={icon.icon} className="w-12 h-12 text-white drop-shadow-lg transform hover:scale-110 transition-all duration-200 pointer-events-none" />
