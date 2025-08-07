@@ -34,7 +34,8 @@ const OSHeroSection = () => {
     { id: 9, name: 'Spin Wheel', icon: 'noto:wheel', x: 20, y: 260, defaultWidth: 800, defaultHeight: 800 },
     { id: 10, name: 'Paint', icon: 'fluent-color:paint-brush-16', x: 105, y: 260, defaultWidth: 700, defaultHeight: 680 },
     { id: 11, name: 'Spotify', icon: 'logos:spotify-icon', x: 190, y: 260, defaultWidth: 700, defaultHeight: 680 },
-    { id: 12, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
+    { id: 12, name: 'Notepad', icon: 'fxemoji:note', x: 275, y: 260, defaultWidth: 600, defaultHeight: 500 },
+    { id: 13, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
