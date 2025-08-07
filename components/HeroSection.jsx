@@ -23,7 +23,7 @@ const OSHeroSection = () => {
   const [wallpaperSelectorOpen, setWallpaperSelectorOpen] = useState(false);
   const [wallpaper, setWallpaper] = useState('/images/wallpaper/wallpaper.jpg');
   const [desktopIcons, setDesktopIcons] = useState([
-    { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', x: 20, y: 60, defaultWidth: 900, defaultHeight: 600 },
+    { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', color: 'text-blue-400', x: 20, y: 60, defaultWidth: 900, defaultHeight: 600 },
     { id: 2, name: 'Projects', icon: 'material-icon-theme:folder-project-open', x: 105, y: 60, defaultWidth: 700, defaultHeight: 600 },
     { id: 3, name: 'Contact', icon: 'fluent-color:mail-48', x: 190, y: 60, defaultWidth: 700, defaultHeight: 500 },
     { id: 4, name: 'Hobbies', icon: 'fluent-emoji-flat:camping', x: 275, y: 60, defaultWidth: 700, defaultHeight: 710 },
