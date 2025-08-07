@@ -50,7 +50,7 @@ const StartMenu = ({ desktopIcons, onIconClick, onClose }) => {
               >
                 <div className="relative">
                   {icon.color ? (
-                    <div className={`p-3 bg-gradient-to-br ${icon.color} rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-200 group-hover:scale-110`}>
+                    <div className={`p-3 ${icon.color}  bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-200 group-hover:scale-110`}>
                       <Icon icon={icon.icon} className="w-6 h-6" />
                     </div>
                   ) : (
