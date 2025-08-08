@@ -101,6 +101,15 @@ const OSHeroSection = () => {
     setStartMenuOpen(false);
   };
 
+  const handleIconClick = (icon) => {
+    if (isMobile) {
+      handleIconDoubleClick(icon);
+    } else {
+      setSelectedIcon(icon.id);
+      setSelectedIcons([icon.id]);
+    }
+  };
+
   const handleMouseDown = (e, icon) => {
     if (isMobile) return;
     
@@ -354,6 +363,7 @@ const OSHeroSection = () => {
             icon={icon}
             isSelected={selectedIcons.includes(icon.id)}
             onMouseDown={handleMouseDown}
+            onClick={() => handleIconClick(icon)}
             onDoubleClick={handleIconDoubleClick}
             onContextMenu={handleIconContextMenu}
           />

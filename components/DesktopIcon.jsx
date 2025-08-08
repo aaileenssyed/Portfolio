@@ -2,7 +2,14 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
-const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onContextMenu }) => {
+const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onClick, onContextMenu }) => {
+  const handleClick = (e) => {
+    if (onClick) {
+      e.stopPropagation();
+      onClick();
+    }
+  };
+
   return (
     <motion.div
       className={`desktop-icon absolute select-none ${isSelected ? 'selected' : ''}`}
@@ -13,9 +20,10 @@ const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onContextMe
     >
       <div 
         className={`flex flex-col items-center p-3 rounded-lg hover:bg-white/10 transition-all duration-200 ${isSelected ? 'bg-white/20' : ''} cursor-pointer w-20 h-24`}
-        onMouseDown={(e) => onMouseDown(e, icon)}
-        onDoubleClick={() => onDoubleClick(icon)}
-        onContextMenu={(e) => onContextMenu(e, icon)}
+        onMouseDown={(e) => onMouseDown && onMouseDown(e, icon)}
+        onClick={handleClick}
+        onDoubleClick={() => onDoubleClick && onDoubleClick(icon)}
+        onContextMenu={(e) => onContextMenu && onContextMenu(e, icon)}
       >
         <div className="flex items-center justify-center w-12 h-12">
           {icon.color ? (
