@@ -1,8 +1,18 @@
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const TopMenuBar = ({ currentTime, onControlCenterToggle }) => {
+  const [isClient, setIsClient] = useState(false);
+  const [displayTime, setDisplayTime] = useState(null);
+
+  useEffect(() => {
+    setIsClient(true);
+    setDisplayTime(currentTime);
+  }, [currentTime]);
+
   const formatTime = (date) => {
+    if (!date) return '--:--';
     return date.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit'
@@ -10,6 +20,7 @@ const TopMenuBar = ({ currentTime, onControlCenterToggle }) => {
   };
 
   const formatDate = (date) => {
+    if (!date) return '---';
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
       day: 'numeric',
@@ -50,11 +61,15 @@ const TopMenuBar = ({ currentTime, onControlCenterToggle }) => {
         >
           <div className="flex items-center gap-2 px-3 py-1 bg-white/5 backdrop-blur-sm rounded-full">
             <Icon icon="mdi:calendar-today" className="w-3.5 h-3.5 text-blue-400" />
-            <span className="font-medium">{formatDate(currentTime)}</span>
+            <span className="font-medium">
+              {isClient ? formatDate(displayTime) : '---'}
+            </span>
           </div>
           <div className="flex items-center gap-2 px-3 py-1 bg-white/5 backdrop-blur-sm rounded-full">
             <Icon icon="mdi:clock-outline" className="w-3.5 h-3.5 text-green-400" />
-            <span className="font-bold">{formatTime(currentTime)}</span>
+            <span className="font-bold">
+              {isClient ? formatTime(displayTime) : '--:--'}
+            </span>
           </div>
         </motion.div>
         
@@ -68,18 +83,21 @@ const TopMenuBar = ({ currentTime, onControlCenterToggle }) => {
             <button 
               onClick={onControlCenterToggle}
               className="system-tray-button p-1.5 rounded-lg hover:bg-white/10 transition-all cursor-pointer group"
+              aria-label="WiFi Status"
             >
               <Icon icon="fluent:wifi-1-24-filled" className="w-4 h-4 text-blue-400 group-hover:text-blue-300 pointer-events-none" />
             </button>
             <button 
               onClick={onControlCenterToggle}
               className="system-tray-button p-1.5 rounded-lg hover:bg-white/10 transition-all cursor-pointer group"
+              aria-label="Battery Status"
             >
               <Icon icon="fluent:battery-3-24-filled" className="w-4 h-4 text-green-400 group-hover:text-green-300 pointer-events-none" />
             </button>
             <button 
               onClick={onControlCenterToggle}
               className="system-tray-button p-1.5 rounded-lg hover:bg-white/10 transition-all cursor-pointer group"
+              aria-label="Volume Control"
             >
               <Icon icon="fluent:speaker-2-24-filled" className="w-4 h-4 text-purple-400 group-hover:text-purple-300 pointer-events-none" />
             </button>
