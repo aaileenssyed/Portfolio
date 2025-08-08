@@ -1,7 +1,37 @@
-# desktop-portfolio
+![](https://jworse.com/img/projects/desktop-portfolio.jpg)
+
+# desktop-portfolio 💻
 A portfolio website that looks and feels like a desktop operating system
 
-## 🔧 Getting Started
+## Features
+- Each application opens in its own window.
+- Windows can be moved.
+- Wallpaper customization: choose from predefined wallpapers or upload your own.
+- Selection box on the desktop for selecting multiple items.
+- Control Center panel.
+- Start menu for quick access to applications.
+- Resizable taskbar.
+- Create new folder
+
+
+## Applications ⭐
+- About Me  
+- Projects  
+- Contact  
+- Hobbies  
+- Gallery  
+- Calculator  
+- Google Chrome  
+- VS Code  
+- Spin Wheel  
+- Paint  
+- Spotify  
+- Notepad  
+- Music Player  
+- Trash
+
+
+## Getting Started 🔧
 - Ensure you have Node.js and npm installed on your machine.
 
 1. Clone the repository with `git clone https://github.com/jworse/desktop-portfolio.git`
