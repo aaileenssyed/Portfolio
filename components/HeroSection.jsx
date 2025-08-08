@@ -22,6 +22,7 @@ const OSHeroSection = () => {
   const [windowDragOffset, setWindowDragOffset] = useState({ x: 0, y: 0 });
   const [wallpaperSelectorOpen, setWallpaperSelectorOpen] = useState(false);
   const [wallpaper, setWallpaper] = useState('/images/wallpaper/wallpaper.jpg');
+  const [isMobile, setIsMobile] = useState(false);
   const [desktopIcons, setDesktopIcons] = useState([
     { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', color: 'text-blue-400', x: 20, y: 60, defaultWidth: 900, defaultHeight: 600 },
     { id: 2, name: 'Projects', icon: 'material-icon-theme:folder-project-open', x: 105, y: 60, defaultWidth: 700, defaultHeight: 600 },
@@ -52,6 +53,17 @@ const OSHeroSection = () => {
   }, []);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (e) => {
       if (contextMenu && !e.target.closest('.context-menu')) {
         setContextMenu(null);
@@ -78,17 +90,20 @@ const OSHeroSection = () => {
     const newWindow = {
       id: Date.now(),
       ...icon,
-      width: icon.defaultWidth || 800,
-      height: icon.defaultHeight || 500,
-      x: 100 + (activeWindows.length * 30),
-      y: 80 + (activeWindows.length * 30),
-      zIndex: activeWindows.length + 1
+      width: isMobile ? window.innerWidth : (icon.defaultWidth || 800),
+      height: isMobile ? window.innerHeight : (icon.defaultHeight || 500),
+      x: isMobile ? 0 : (100 + (activeWindows.length * 30)),
+      y: isMobile ? 0 : (80 + (activeWindows.length * 30)),
+      zIndex: activeWindows.length + 1,
+      isFullscreen: isMobile
     };
     setActiveWindows([...activeWindows, newWindow]);
     setStartMenuOpen(false);
   };
 
   const handleMouseDown = (e, icon) => {
+    if (isMobile) return;
+    
     const rect = e.currentTarget.getBoundingClientRect();
     setDragOffset({
       x: e.clientX - rect.left,
@@ -100,6 +115,8 @@ const OSHeroSection = () => {
   };
 
   const handleDesktopMouseDown = (e) => {
+    if (isMobile) return;
+    
     const isClickOnWindow = e.target.closest('.window-container');
     const isClickOnIcon = e.target.closest('.desktop-icon');
     const isClickOnDesktop = e.target === desktopRef.current || e.target.classList.contains('desktop-area');
@@ -123,6 +140,8 @@ const OSHeroSection = () => {
   };
 
   const handleWindowMouseDown = (e, windowId) => {
+    if (isMobile) return;
+    
     const window = activeWindows.find(w => w.id === windowId);
     setWindowDragOffset({
       x: e.clientX - window.x,
@@ -133,6 +152,8 @@ const OSHeroSection = () => {
   };
 
   const handleMouseMove = (e) => {
+    if (isMobile) return;
+    
     if (draggingIcon && desktopRef.current) {
       const desktopRect = desktopRef.current.getBoundingClientRect();
       const newX = e.clientX - desktopRect.left - dragOffset.x;
@@ -200,6 +221,8 @@ const OSHeroSection = () => {
 
   const handleContextMenu = (e) => {
     e.preventDefault();
+    if (isMobile) return;
+    
     setContextMenu({
       x: e.clientX,
       y: e.clientY,
@@ -210,6 +233,7 @@ const OSHeroSection = () => {
   const handleIconContextMenu = (e, icon) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isMobile) return;
     
     if (!selectedIcons.includes(icon.id)) {
       setSelectedIcons([icon.id]);
@@ -320,7 +344,7 @@ const OSHeroSection = () => {
 
       <div 
         ref={desktopRef}
-        className="absolute inset-0 pt-8 pb-12 desktop-area"
+        className={`absolute inset-0 ${isMobile ? 'pt-12 pb-16' : 'pt-8 pb-12'} desktop-area`}
         onContextMenu={handleContextMenu}
         onMouseDown={handleDesktopMouseDown}
       >
@@ -335,7 +359,7 @@ const OSHeroSection = () => {
           />
         ))}
 
-        {selectionBox && isSelecting && (
+        {!isMobile && selectionBox && isSelecting && (
           <motion.div
             className="absolute border border-blue-400 bg-blue-400/20 pointer-events-none"
             initial={{ opacity: 0 }}
@@ -359,6 +383,7 @@ const OSHeroSection = () => {
             deletedItems={deletedItems}
             setDeletedItems={setDeletedItems}
             onOpenWindow={handleIconDoubleClick}
+            isMobile={isMobile}
           />
         ))}
       </div>
