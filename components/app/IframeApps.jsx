@@ -21,7 +21,7 @@ export const SpinWheel = () => {
       {!isLoaded && <LoadingSpinner />}
       <div className="flex-1 relative">
         <iframe
-          src="https://jworse.com/tools/spin-wheel"
+          src="https://jworse.com/embed/tools/spin-wheel"
           className={`w-full h-full transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           title="Spin Wheel"
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -40,7 +40,7 @@ export const Paint = () => {
       {!isLoaded && <LoadingSpinner />}
       <div className="flex-1 relative">
         <iframe
-          src="https://jworse.com/tools/paint"
+          src="https://jworse.com/embed/tools/paint"
           className={`w-full h-full transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           title="Paint"
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
