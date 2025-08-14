@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
-const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onClick, onContextMenu, isMobile, index }) => {
+const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onClick, onContextMenu, isMobile, index, refreshKey }) => {
   const handleClick = (e) => {
     if (onClick) {
       e.stopPropagation();
@@ -12,11 +12,16 @@ const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onClick, on
 
   return (
     <motion.div
+      key={refreshKey}
       className={`desktop-icon ${isMobile ? 'relative' : 'absolute'} select-none ${isSelected ? 'selected' : ''}`}
       style={!isMobile ? { left: `${icon.x}px`, top: `${icon.y}px` } : {}}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20,
+      }}
     >
       <div 
         className={`flex flex-col items-center p-3 rounded-lg hover:bg-white/10 transition-all duration-200 ${isSelected ? 'bg-white/20' : ''} cursor-pointer ${isMobile ? 'w-full h-20' : 'w-20 h-24'}`}

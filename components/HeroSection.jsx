@@ -23,6 +23,7 @@ const OSHeroSection = () => {
   const [wallpaperSelectorOpen, setWallpaperSelectorOpen] = useState(false);
   const [wallpaper, setWallpaper] = useState('/images/wallpaper/wallpaper.jpg');
   const [isMobile, setIsMobile] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [desktopIcons, setDesktopIcons] = useState([
     { id: 1, name: 'About Me', icon: 'hugeicons:user-sharing', color: 'text-blue-400', x: 20, y: 60, defaultWidth: 900, defaultHeight: 600 },
     { id: 2, name: 'Projects', icon: 'material-icon-theme:folder-project-open', x: 105, y: 60, defaultWidth: 700, defaultHeight: 600 },
@@ -315,6 +316,11 @@ const OSHeroSection = () => {
     setWallpaper(wallpaperUrl);
   };
 
+  const handleRefresh = () => {
+    setRefreshKey(prev => prev + 1);
+    setContextMenu(null);
+  };
+
   return (
     <div 
       className="h-screen relative overflow-hidden bg-black"
@@ -375,6 +381,7 @@ const OSHeroSection = () => {
               icon={icon}
               index={index}
               isMobile={isMobile}
+              refreshKey={refreshKey}
               isSelected={selectedIcons.includes(icon.id)}
               onMouseDown={handleMouseDown}
               onClick={() => handleIconClick(icon)}
@@ -423,6 +430,7 @@ const OSHeroSection = () => {
           }}
           onDeleteIcon={deleteIcon}
           onChangeWallpaper={handleChangeWallpaper}
+          onRefresh={handleRefresh}
         />
       )}
 
