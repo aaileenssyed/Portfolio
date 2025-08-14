@@ -19,7 +19,17 @@ const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems, o
           onMouseDown={isMobile ? undefined : (e) => onMouseDown(e, window.id)}
         >
           <div className="flex items-center space-x-3">
-            <Icon icon={window.icon} className="w-5 h-5 text-gray-400" />
+            {window.image ? (
+              <div className="w-5 h-5 rounded overflow-hidden">
+                <img 
+                  src={window.image} 
+                  alt={window.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : (
+              <Icon icon={window.icon} className="w-5 h-5 text-gray-400" />
+            )}
             <span className="text-white font-medium">{window.name}</span>
           </div>
           <div className="flex items-center space-x-2">

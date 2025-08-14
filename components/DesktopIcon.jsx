@@ -26,7 +26,15 @@ const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onClick, on
         onContextMenu={(e) => onContextMenu && onContextMenu(e, icon)}
       >
         <div className="flex items-center justify-center w-12 h-12">
-          {icon.color ? (
+          {icon.image ? (
+            <div className="w-12 h-12 rounded-xl overflow-hidden shadow-2xl transform hover:scale-110 transition-all duration-200 pointer-events-none">
+              <img 
+                src={icon.image} 
+                alt={icon.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : icon.color ? (
             <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-br ${icon.color} rounded-xl shadow-2xl transform hover:scale-110 transition-all duration-200 pointer-events-none`}>
               <Icon icon={icon.icon} className="w-12 h-12 " />
             </div>

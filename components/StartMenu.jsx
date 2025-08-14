@@ -78,7 +78,17 @@ const StartMenu = ({ desktopIcons, onIconClick, onClose }) => {
                     : 'w-full flex items-center space-x-4 p-3 rounded-xl hover:bg-white/10 active:bg-white/15'} transition-all duration-200`}
                 >
                   <div className="relative">
-                    {icon.color ? (
+                    {icon.image ? (
+                      <div className={`${isMobile ? 'p-2' : 'p-3'} bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-200 group-hover:scale-110`}>
+                        <div className={`${isMobile ? 'w-8 h-8' : 'w-6 h-6'} rounded overflow-hidden`}>
+                          <img 
+                            src={icon.image} 
+                            alt={icon.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    ) : icon.color ? (
                       <div className={`${isMobile ? 'p-2' : 'p-3'} ${icon.color} bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-200 group-hover:scale-110`}>
                         <Icon icon={icon.icon} className={`${isMobile ? 'w-8 h-8' : 'w-6 h-6'}`} />
                       </div>

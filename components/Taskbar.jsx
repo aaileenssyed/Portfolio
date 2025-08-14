@@ -51,7 +51,15 @@ const Taskbar = ({ startMenuOpen, setStartMenuOpen, activeWindows, onBringToFron
                 onClick={() => onBringToFront(window.id)}
                 className={`relative flex items-center gap-3 px-4 h-[calc(100%-8px)] bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 active:bg-white/25 transition-all duration-200 min-w-[60px] max-w-[250px] border border-white/10 hover:border-white/20 overflow-hidden`}
               >
-                {window.color ? (
+                {window.image ? (
+                  <div className={`${taskbarSize === 'small' ? 'w-5 h-5' : 'w-6 h-6'} rounded overflow-hidden flex-shrink-0`}>
+                    <img 
+                      src={window.image} 
+                      alt={window.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : window.color ? (
                   <div className={`p-1.5 bg-gradient-to-br ${window.color} rounded-lg flex-shrink-0`}>
                     <Icon icon={window.icon} className="w-4 h-4" />
                   </div>
