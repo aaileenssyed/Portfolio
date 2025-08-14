@@ -21,6 +21,7 @@ const DesktopIcon = ({ icon, isSelected, onMouseDown, onDoubleClick, onClick, on
         type: "spring", 
         stiffness: 300, 
         damping: 20,
+        delay: index * 0.05
       }}
     >
       <div 
