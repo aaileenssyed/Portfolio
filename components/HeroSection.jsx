@@ -363,21 +363,25 @@ const OSHeroSection = () => {
 
       <div 
         ref={desktopRef}
-        className={`absolute inset-0 ${isMobile ? 'pt-12 pb-16' : 'pt-8 pb-12'} desktop-area`}
+        className={`absolute inset-0 ${isMobile ? 'pt-12 pb-16 overflow-y-auto' : 'pt-8 pb-12'} desktop-area`}
         onContextMenu={handleContextMenu}
         onMouseDown={handleDesktopMouseDown}
       >
-        {desktopIcons.map((icon) => (
-          <DesktopIcon
-            key={icon.id}
-            icon={icon}
-            isSelected={selectedIcons.includes(icon.id)}
-            onMouseDown={handleMouseDown}
-            onClick={() => handleIconClick(icon)}
-            onDoubleClick={handleIconDoubleClick}
-            onContextMenu={handleIconContextMenu}
-          />
-        ))}
+        <div className={isMobile ? 'grid grid-cols-4 gap-2 p-4' : ''}>
+          {desktopIcons.map((icon, index) => (
+            <DesktopIcon
+              key={icon.id}
+              icon={icon}
+              index={index}
+              isMobile={isMobile}
+              isSelected={selectedIcons.includes(icon.id)}
+              onMouseDown={handleMouseDown}
+              onClick={() => handleIconClick(icon)}
+              onDoubleClick={handleIconDoubleClick}
+              onContextMenu={handleIconContextMenu}
+            />
+          ))}
+        </div>
 
         {!isMobile && selectionBox && isSelecting && (
           <motion.div
