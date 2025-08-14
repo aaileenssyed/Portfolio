@@ -8,7 +8,7 @@ import Hobbies from './app/Hobbies';
 import Gallery from './app/Gallery';
 import Notepad from './app/Notepad';
 import MusicPlayer from './app/MusicPlayer';
-import { SpinWheel, Paint, VSCode, Spotify } from './app/IframeApps';
+import { SpinWheel, Paint, VSCode, Spotify, HTMLEncoderDecoder, TierList, SpeedTyping, ColorPicker, Snake, Minesweeper, Memory, DinoRunner, NeonWings, Sudoku } from './app/IframeApps';
 
 const WindowContent = ({ window, deletedItems, setDeletedItems, onOpenWindow }) => {
   if (window.name === 'Trash') {
@@ -74,6 +74,46 @@ const WindowContent = ({ window, deletedItems, setDeletedItems, onOpenWindow }) 
 
   if (window.name === 'Spotify') {
     return <Spotify />;
+  }
+
+  if (window.name === 'HTML E/D') {
+    return <HTMLEncoderDecoder />;
+  }
+
+  if (window.name === 'Tier List') {
+    return <TierList />;
+  }
+
+  if (window.name === 'Speed Typing') {
+    return <SpeedTyping />;
+  }
+
+  if (window.name === 'Color Picker') {
+    return <ColorPicker />;
+  }
+
+  if (window.name === 'Snake') {
+  return <Snake />;
+  }
+
+  if (window.name === 'Minesweeper') {
+    return <Minesweeper />;
+  }
+
+  if (window.name === 'Memory') {
+    return <Memory />;
+  }
+
+  if (window.name === 'Dino Runner') {
+    return <DinoRunner />;
+  }
+
+  if (window.name === 'Neon Wings') {
+    return <NeonWings />;
+  }
+
+  if (window.name === 'Sudoku') {
+    return <Sudoku />;
   }
 
   if (window.name === 'Gallery') {

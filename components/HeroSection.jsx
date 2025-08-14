@@ -33,11 +33,21 @@ const OSHeroSection = () => {
     { id: 7, name: 'Google Chrome', icon: 'logos:chrome', x: 190, y: 160, defaultWidth: 1100, defaultHeight: 700 },
     { id: 8, name: 'VS Code', icon: 'material-icon-theme:vscode', x: 275, y: 160, defaultWidth: 1200, defaultHeight: 800 },
     { id: 9, name: 'Spin Wheel', icon: 'noto:wheel', x: 20, y: 260, defaultWidth: 800, defaultHeight: 800 },
-    { id: 10, name: 'Paint', icon: 'fluent-color:paint-brush-16', x: 105, y: 260, defaultWidth: 700, defaultHeight: 680 },
+    { id: 10, name: 'Paint', icon: 'noto-v1:artist-palette', x: 105, y: 260, defaultWidth: 700, defaultHeight: 680 },
     { id: 11, name: 'Spotify', icon: 'logos:spotify-icon', x: 190, y: 260, defaultWidth: 700, defaultHeight: 680 },
     { id: 12, name: 'Notepad', icon: 'fxemoji:note', x: 275, y: 260, defaultWidth: 600, defaultHeight: 500 },
     { id: 13, name: 'Music Player', icon: 'mdi:music', color: 'text-blue-500', x: 105, y: 360, defaultWidth: 700, defaultHeight: 600 },
     { id: 14, name: 'Trash', icon: 'flat-color-icons:full-trash', x: 20, y: 360, defaultWidth: 600, defaultHeight: 620 },
+    { id: 15, name: 'HTML E/D', image: 'https://jworse.com/img/tools/html-encoder-decoder.png', x: 190, y: 560, defaultWidth: 800, defaultHeight: 600 },
+    { id: 16, name: 'Tier List', image: 'https://jworse.com/img/tools/tier-list.png', x: 275, y: 560, defaultWidth: 900, defaultHeight: 700 },
+    { id: 17, name: 'Speed Typing', image: 'https://jworse.com/img/tools/speed-typing.png', x: 20, y: 560, defaultWidth: 800, defaultHeight: 600 },
+    { id: 18, name: 'Color Picker', image: 'https://jworse.com/img/tools/color-picker.png', x: 105, y: 560, defaultWidth: 700, defaultHeight: 600 },
+    { id: 19, name: 'Snake', image: 'https://jworse.com/img/games/snake.png', x: 190, y: 660, defaultWidth: 800, defaultHeight: 800 },
+    { id: 20, name: 'Minesweeper', icon: 'noto:bomb', x: 275, y: 660, defaultWidth: 1200, defaultHeight: 800 },
+    { id: 21, name: 'Memory', image: 'https://jworse.com/img/games/memory-card.png', x: 20, y: 660, defaultWidth: 800, defaultHeight: 800 },
+    { id: 22, name: 'Dino Runner', image: 'https://jworse.com/img/games/dino-runner.png', x: 105, y: 660, defaultWidth: 1200, defaultHeight: 800 },
+    { id: 23, name: 'Neon Wings', icon: 'noto:rocket', x: 20, y: 760, defaultWidth: 1200, defaultHeight: 800 },
+    { id: 24, name: 'Sudoku', image: 'https://jworse.com/img/games/sudoku.png', x: 105, y: 760, defaultWidth: 800, defaultHeight: 800 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
