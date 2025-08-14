@@ -48,6 +48,7 @@ const OSHeroSection = () => {
     { id: 22, name: 'Dino Runner', image: 'https://jworse.com/img/games/dino-runner.png', x: 105, y: 660, defaultWidth: 1200, defaultHeight: 800 },
     { id: 23, name: 'Neon Wings', icon: 'noto:rocket', x: 20, y: 760, defaultWidth: 1200, defaultHeight: 800 },
     { id: 24, name: 'Sudoku', image: 'https://jworse.com/img/games/sudoku.png', x: 105, y: 760, defaultWidth: 800, defaultHeight: 800 },
+    { id: 25, name: 'Videos', icon: 'fluent-color:video-20',  x: 190, y: 760, defaultWidth: 800, defaultHeight: 600 },
   ]);
   const [draggingIcon, setDraggingIcon] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });

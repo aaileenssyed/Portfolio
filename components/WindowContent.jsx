@@ -6,6 +6,7 @@ import Projects from './app/Projects';
 import Calculator from './app/Calculator';
 import Hobbies from './app/Hobbies';
 import Gallery from './app/Gallery';
+import Videos from './app/Videos';
 import Notepad from './app/Notepad';
 import MusicPlayer from './app/MusicPlayer';
 import { SpinWheel, Paint, VSCode, Spotify, HTMLEncoderDecoder, TierList, SpeedTyping, ColorPicker, Snake, Minesweeper, Memory, DinoRunner, NeonWings, Sudoku } from './app/IframeApps';
@@ -127,6 +128,27 @@ const WindowContent = ({ window, deletedItems, setDeletedItems, onOpenWindow }) 
           src={window.imageUrl} 
           alt={window.name}
           className="max-w-full max-h-full object-contain rounded-lg"
+        />
+      </div>
+    );
+  }
+
+  if (window.name === 'Videos') {
+   return <Videos onOpenWindow={onOpenWindow} />;
+ }
+
+  if (window.isVideo && window.videoId) {
+    return (
+      <div className="flex items-center justify-center h-full bg-gray-900">
+        <iframe
+          width="100%"
+          height="100%"
+          src={`https://www.youtube.com/embed/${window.videoId}`}
+          title={window.name}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="rounded-lg"
         />
       </div>
     );
