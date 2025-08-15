@@ -29,6 +29,17 @@ A portfolio website that looks and feels like a desktop operating system
 - Notepad  
 - Music Player  
 - Trash
+- HTML E/D
+- Tier List
+- Speed Typing
+- Color Picker
+- Snake
+- Minesweeper
+- Memory
+- Dino Runner
+- Neon Wings
+- Sudoku
+- Videos
 
 
 ## Getting Started 🔧
