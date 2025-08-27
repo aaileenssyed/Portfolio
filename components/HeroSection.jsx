@@ -406,18 +406,20 @@ const OSHeroSection = () => {
           />
         )}
 
-        {activeWindows.map((window) => (
-          <Window
-            key={window.id}
-            window={window}
-            onMouseDown={handleWindowMouseDown}
-            onClose={closeWindow}
-            deletedItems={deletedItems}
-            setDeletedItems={setDeletedItems}
-            onOpenWindow={handleIconDoubleClick}
-            isMobile={isMobile}
-          />
-        ))}
+        <AnimatePresence>
+          {activeWindows.map((window) => (
+            <Window
+              key={window.id}
+              window={window}
+              onMouseDown={handleWindowMouseDown}
+              onClose={closeWindow}
+              deletedItems={deletedItems}
+              setDeletedItems={setDeletedItems}
+              onOpenWindow={handleIconDoubleClick}
+              isMobile={isMobile}
+            />
+          ))}
+        </AnimatePresence>
       </div>
 
       {contextMenu && (

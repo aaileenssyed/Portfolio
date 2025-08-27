@@ -1,9 +1,10 @@
 import { Icon } from '@iconify/react';
+import { motion } from 'framer-motion';
 import WindowContent from './WindowContent';
 
 const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems, onOpenWindow, isMobile }) => {
   return (
-    <div
+    <motion.div
       className={`${isMobile ? 'fixed' : 'absolute'} window-container`}
       style={{ 
         left: isMobile ? 0 : `${window.x}px`, 
@@ -11,6 +12,13 @@ const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems, o
         width: isMobile ? '100%' : `${window.width}px`, 
         height: isMobile ? '100%' : `${window.height}px`,
         zIndex: window.zIndex 
+      }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ 
+        duration: 0.2,
+        ease: "easeOut"
       }}
     >
       <div className={`bg-gray-900/95 backdrop-blur-xl ${isMobile ? '' : 'rounded-xl'} shadow-2xl h-full border border-gray-700/50 animate-fadeIn flex flex-col`}>
@@ -56,7 +64,7 @@ const Window = ({ window, onMouseDown, onClose, deletedItems, setDeletedItems, o
           <WindowContent window={window} deletedItems={deletedItems} setDeletedItems={setDeletedItems} onOpenWindow={onOpenWindow} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
