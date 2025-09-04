@@ -172,6 +172,16 @@ const OSHeroSection = () => {
     bringToFront(windowId);
   };
 
+  const handleWindowResize = (windowId, newDimensions) => {
+    setActiveWindows(prevWindows => 
+      prevWindows.map(w => 
+        w.id === windowId 
+          ? { ...w, ...newDimensions }
+          : w
+      )
+    );
+  };
+
   const handleMouseMove = (e) => {
     if (isMobile) return;
     
@@ -413,6 +423,7 @@ const OSHeroSection = () => {
               window={window}
               onMouseDown={handleWindowMouseDown}
               onClose={closeWindow}
+              onResize={handleWindowResize}
               deletedItems={deletedItems}
               setDeletedItems={setDeletedItems}
               onOpenWindow={handleIconDoubleClick}
@@ -516,6 +527,12 @@ const OSHeroSection = () => {
           cursor: pointer;
           border-radius: 50%;
           box-shadow: 0 0 4px rgba(0,0,0,0.3);
+          border: none;
+        }
+        .slider::-webkit-slider-track {
+          height: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
         }
         .slider::-moz-range-thumb {
           width: 16px;
@@ -524,6 +541,13 @@ const OSHeroSection = () => {
           cursor: pointer;
           border-radius: 50%;
           box-shadow: 0 0 4px rgba(0,0,0,0.3);
+          border: none;
+        }
+        .slider::-moz-range-track {
+          height: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+          border: none;
         }
       `}</style>
     </div>
