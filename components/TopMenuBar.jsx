@@ -58,7 +58,7 @@ const TopMenuBar = ({ currentTime, onControlCenterToggle }) => {
             className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors group"
           >
             <Icon icon="mdi:github" className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-            {!isMobile && <span>jworse desktop portfolio</span>}
+            {!isMobile && <span>Aailily desktop portfolio</span>}
           </a>
         </motion.div>
         

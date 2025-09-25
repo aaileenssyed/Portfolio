@@ -1,4 +1,4 @@
-![](https://jworse.com/img/projects/desktop-portfolio.jpg)
+
 
 # desktop-portfolio 💻
 A portfolio website that looks and feels like a desktop operating system
@@ -45,7 +45,7 @@ A portfolio website that looks and feels like a desktop operating system
 ## Getting Started 🔧
 - Ensure you have Node.js and npm installed on your machine.
 
-1. Clone the repository with `git clone https://github.com/jworse/desktop-portfolio.git`
+1. Clone the repository with `git clone https://github.com/aaileenssyed/Portfolio.git`
 2. Install dependencies: `npm install`
 3. Run the development server: `npm run dev`
 

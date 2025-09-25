@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "",
   "author": {
-    "name": "jworse",
-    "email": "me@jworse.com",
-    "url": "https://jworse.com"
+    "name": "aailily",
+    "email": "me@aailily.com",
+    "url": "https://aailily.com"
   },
   "scripts": {
     "dev": "next dev",

@@ -31,7 +31,7 @@ const ControlCenter = ({ brightness, setBrightness, volume, setVolume }) => {
               <div className="space-y-1">
                 <div className="text-white font-medium text-sm">Wi-Fi</div>
                 <div className={`text-xs transition-colors ${wifiEnabled ? 'text-blue-300' : 'text-gray-500'}`}>
-                  {wifiEnabled ? 'JWORSE_5G' : 'Off'}
+                  {wifiEnabled ? 'Aailily_5G' : 'Off'}
                 </div>
               </div>
             </div>

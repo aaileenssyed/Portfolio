@@ -14,7 +14,7 @@ const AboutMe = () => {
           </div>
           <div>
             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent p-1">
-              jworse
+              Aailily
             </h2>
             <p className="text-gray-400 text-sm mt-1">Full-Stack Developer</p>
           </div>

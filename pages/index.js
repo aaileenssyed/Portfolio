@@ -5,11 +5,11 @@ export default function Home() {
   const data = {
     title: 'Desktop Portfolio',
     description: 'Meet an interactive portfolio site designed in desktop view. Experience an operating system experience by navigating through familiar icons and applications.',
-    author: 'jworse',
+    author: 'aailily',
     themeColor: '#68bcdc',
-    url: 'https://desktop.jworse.com',
+    url: 'https://www.google.com',
     favicon: 'https://jworse.com/img/favicon.png',
-    siteName: 'jworse.com'
+    siteName: 'aailily.com'
   };
 
   return (
